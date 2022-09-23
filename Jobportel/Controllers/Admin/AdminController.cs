@@ -67,7 +67,7 @@ namespace JobPortal.Api.Controllers.Admin
             return OkResponse("Success", Jobs);
         }
 
-        [HttpGet("JobAppliedByCandidates")]
+        [HttpPost("JobAppliedByCandidates")]
         public async Task<IActionResult> JobAppliedByCandidates(Pagination pagination)
         {
             var candidates = await _adminService.GetJobAppliedcandidatesAsync(pagination);

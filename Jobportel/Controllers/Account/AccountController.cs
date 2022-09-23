@@ -74,7 +74,7 @@ namespace JobPortal.Api.Controllers.Account
 
         [HttpPost]
         [Route("ForgotPassword")]
-        [Authorize(Policy = "AllAllowed")]
+        [AllowAnonymous]
         public async Task<IActionResult> ForgotPassword(string email)
         {
             var user = await _userService.ForgotPassword(email);
@@ -88,7 +88,7 @@ namespace JobPortal.Api.Controllers.Account
 
         [HttpPost]
         [Route("ResetPassword")]
-        [Authorize(Policy = "AllAllowed")]
+        [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(int otp, string newPassword, string confirmPassword)
         {
             var user = await _userService.ResetPassword(otp, newPassword, confirmPassword);

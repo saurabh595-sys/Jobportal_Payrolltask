@@ -36,10 +36,10 @@ namespace JobPortal.Api.Controllers.Applicants
         }
 
         [Authorize(Policy = "AllAllowed")]
-        [HttpPost("{id}")]
-        public async Task<IActionResult> GetApplicantById(int Id)
+        [HttpPost("GetApplicantById/{id}")]
+        public async Task<IActionResult> GetApplicantById(int id)
         {
-            Applicant applicant = await _applicantService.GetById(Id);
+            Applicant applicant = await _applicantService.GetById(id);
             return OkResponse("Sucess", applicant);
         }
         

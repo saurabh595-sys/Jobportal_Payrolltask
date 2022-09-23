@@ -98,12 +98,20 @@ namespace JobPortal.Service.Admin
                                       Description=j.Description,
                                       AppliedAt=a.AppliedAt
                                   }).OrderBy(x => x.CandidateId)
-                               .Skip((pagination.PageNumber - 1) * pagination.PageSize)
-                               .Take(pagination.PageSize)
-                               .ToListAsync();
+                                  .ToListAsync();
 
 
-            return applicant;
+
+            var count = applicant.Count();
+            if (pagination.PageSize == -1)
+            {
+                pagination.PageSize = count;
+            }
+
+            var result = applicant.Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                           .Take(pagination.PageSize);
+            return result;
+
            
         }
 

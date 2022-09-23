@@ -16,8 +16,8 @@ namespace JobPortal.Api.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Policy = "Admin")]
-    [AllowAnonymous]
+    [Authorize(Policy = "Admin")]
+   
     public class AdminController : BaseController
     {
         private readonly IAdminService _adminService;

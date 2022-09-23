@@ -30,7 +30,7 @@ namespace JobPortal.Api.Controllers
             return OkResponse("Success", Jobs);
         }
         [Authorize(Policy = "AllAllowed")]
-        [HttpPost("{id}")]
+        [HttpPost("GetJobById/{Id}")]
         public async Task<IActionResult> GetJobById(int Id)
         {
             Job job  = await _jobService.GetById(Id);

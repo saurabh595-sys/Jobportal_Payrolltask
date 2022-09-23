@@ -26,24 +26,22 @@ namespace Jobportel.Api.Controllers.Users
         [HttpPost("Users")]
         public async Task<IActionResult> GetUsers([FromBody] Pagination pagination)
         {
-            if (!ModelState.IsValid)
-            {
+           
                 var user = await _user.GetAll(pagination);
                 return OkResponse("Success", user);
-            }
-            return BadResponse("Enter Proper Details", pagination);
+           
+           
         }
 
         [Authorize(Policy = "Admin")]
         [HttpPost("User/{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
-            if (!ModelState.IsValid)
-            {
+            
                 User user = await _user.GetById(id);
                 return OkResponse("Sucess", user);
-            }
-            return BadResponse("Enter Proper Details", id);
+            
+            
         }
 
         [AllowAnonymous]
@@ -74,12 +72,8 @@ namespace Jobportel.Api.Controllers.Users
         [HttpDelete("User/{id}")]
         public async Task<IActionResult> DeleteUser(int Id)
         {
-            if (!ModelState.IsValid)
-            {
                 await _user.Delete(Id);
                 return OkResponse("Sucess", Id);
-            }
-            return BadResponse("Enter Proper ID", Id);
         }
 
 

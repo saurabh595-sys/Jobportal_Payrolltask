@@ -71,7 +71,8 @@ namespace JobPortal.Service.Jobs
                 jobs.CreatedAt = job.CreatedAt;
                 jobs.CreatedBy = job.CreatedBy;
                 jobs.Description = job.Description;
-                jobs.EndAt = jobs.EndAt;
+                jobs.EndAt = job.EndAt;
+                jobs.IsActive = jobs.IsActive;
                 await _jobRepositry.Update(jobs);
                 return jobs;
             }

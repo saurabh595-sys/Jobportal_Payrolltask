@@ -22,7 +22,8 @@ namespace JobPortal.Data.Repositories.Jobs
         public async Task<IEnumerable<GetJobDto>> GetJobs(Pagination pagination)
         {
             var Jobs = await (from j in _contex.Job
-                              join u in _contex.User on j.CreatedBy equals u.Id
+                              join u in _contex.User on j.CreatedBy equals u.Id 
+                              where j.CreatedBy == u.Id
                               select new GetJobDto
                               {
                                   Id = j.Id,

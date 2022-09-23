@@ -39,8 +39,6 @@ namespace DevRequired.Service
                 }
                 CC.Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(t => mail.CC.Add(new MailAddress(t)));
 
-              
-                     
                     mail.Subject = Subject;
                     mail.Body = builder.ToString();
                     mail.IsBodyHtml = true;

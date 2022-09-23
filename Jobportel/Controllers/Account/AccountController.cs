@@ -36,6 +36,7 @@ namespace JobPortal.Api.Controllers.Account
         }
         [HttpPost]
         [Route("Login")]
+       [AllowAnonymous]
         public async Task<IActionResult> Login(LoginRequest model)
         {
             var user = await _userService.GetUser(model.Email, model.Password);
@@ -73,7 +74,7 @@ namespace JobPortal.Api.Controllers.Account
 
         [HttpPost]
         [Route("ForgotPassword")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AllAllowed")]
         public async Task<IActionResult> ForgotPassword(string email)
         {
             var user = await _userService.ForgotPassword(email);
@@ -87,7 +88,7 @@ namespace JobPortal.Api.Controllers.Account
 
         [HttpPost]
         [Route("ResetPassword")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AllAllowed")]
         public async Task<IActionResult> ResetPassword(int otp, string newPassword, string confirmPassword)
         {
             var user = await _userService.ResetPassword(otp, newPassword, confirmPassword);

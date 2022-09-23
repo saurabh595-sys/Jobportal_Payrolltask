@@ -52,14 +52,14 @@ namespace Jobportel
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("Conn")));
             services.AddControllers(option => option
                    .Filters.Add(typeof(ExceptionFilter)));
-            //services.AddControllers();
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-
+            
              .AddJwtBearer(options =>
              {
                  options.SaveToken = true;
@@ -73,6 +73,16 @@ namespace Jobportel
                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                  };
              });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminRecruiterOnly", policy => policy.RequireRole("Admin", "Recruiter"));
+                options.AddPolicy("AllAllowed", policy => policy.RequireRole("Admin", "Recruiter", "Candidate"));
+                options.AddPolicy("AdminCandidateOnly", policy => policy.RequireRole("Admin", "Candidate"));
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            });
+
+
             services.AddScoped<IUserService, UserService>()
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<IRoleService, RoleService>()

@@ -4,6 +4,7 @@ using JobPortal.Model.Model;
 using JobPortal.Service.Admin;
 using Jobportel.Api.Controllers;
 using Jobportel.Data.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +16,7 @@ namespace JobPortal.Api.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "Admin")]
     public class AdminController : BaseController
     {
         private readonly IAdminService _adminService;

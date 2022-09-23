@@ -2,6 +2,7 @@
 using JobPortal.Service.Roles;
 using Jobportel.Api.Controllers;
 using Jobportel.Data.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace JobPortal.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "Admin")]
     public class RoleController : BaseController
     {
         private readonly IRoleService _roleService;

@@ -25,11 +25,17 @@ namespace Jobportel.Service.Users
         }
 
 
-        public async Task<User> Add(User u)
+        public async Task<User> Add(UserAddDto userdto)
         {
-            User Users = u;
-            Users.Password = BCrypt.Net.BCrypt.HashPassword(u.Password);
-            return await _userRepository.Add(Users);
+            User user = new User();
+            user.Name = userdto.Name;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(userdto.Password);
+            user.RoleId = userdto.RoleId;
+            user.Email = userdto.Email;
+            user.CreatedAt = userdto.CreatedAt;
+            user.IsActive = userdto.IsActive;
+
+            return await _userRepository.Add(user);
         }
 
         public async Task<bool> Delete(int id)

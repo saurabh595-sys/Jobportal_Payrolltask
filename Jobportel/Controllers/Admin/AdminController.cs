@@ -1,4 +1,6 @@
 ﻿using JobPortal.Api.Dto;
+using JobPortal.Model.Dto.UserDto;
+using JobPortal.Model.Model;
 using JobPortal.Service.Admin;
 using Jobportel.Api.Controllers;
 using Jobportel.Data.Model;
@@ -21,24 +23,24 @@ namespace JobPortal.Api.Controllers.Admin
             _adminService = admin;
         }
 
-        [HttpGet("Candidates")]
-        public async Task<IActionResult> Candidates()
+        [HttpPost("Candidates")]
+        public async Task<IActionResult> Candidates(Pagination pagination)
         {
-            var candidates = await _adminService.GetcandidatesAsync();
+            var candidates = await _adminService.GetcandidatesAsync(pagination);
             return OkResponse("Success", candidates);
         }
 
-        [HttpGet("Recruiters")]
-        public async Task<IActionResult> Recruiters()
+        [HttpPost("Recruiters")]
+        public async Task<IActionResult> Recruiters(Pagination pagination)
         {
-            var Jobs = await _adminService.GetrecruitersAsync();
+            var Jobs = await _adminService.GetrecruitersAsync(pagination);
             return OkResponse("Success", Jobs);
         }
 
-        [HttpGet("Jobs")]
-        public async Task<IActionResult> Jobs()
+        [HttpPost("Jobs")]
+        public async Task<IActionResult> Jobs(Pagination pagination)
         {
-            var Jobs = await _adminService.GetjobsAsync();
+            var Jobs = await _adminService.GetjobsAsync(pagination);
             return OkResponse("Success", Jobs);
         }
 
@@ -64,18 +66,18 @@ namespace JobPortal.Api.Controllers.Admin
         }
 
         [HttpGet("JobAppliedByCandidates")]
-        public async Task<IActionResult> JobAppliedByCandidates()
+        public async Task<IActionResult> JobAppliedByCandidates(Pagination pagination)
         {
-            var candidates = await _adminService.GetJobAppliedcandidatesAsync();
+            var candidates = await _adminService.GetJobAppliedcandidatesAsync(pagination);
             return OkResponse("Success", candidates);
         }
 
-        [HttpGet("Export")]
-        public async Task<IActionResult> ExportFile()
+        [HttpPost("Export")]
+        public async Task<IActionResult> ExportFile(Pagination pagination)
         {
-            IEnumerable<User> candidatesList =await _adminService.GetcandidatesAsync();
-            IEnumerable<User> recruitersList =await _adminService.GetrecruitersAsync();
-            IEnumerable<JobApplied> jobsAppliedByCandidatesList =await _adminService.GetJobAppliedcandidatesAsync();
+            IEnumerable<UserGetDto> candidatesList = await _adminService.GetcandidatesAsync(pagination);
+            IEnumerable<UserGetDto> recruitersList =await _adminService.GetrecruitersAsync(pagination);
+            IEnumerable<JobApplied> jobsAppliedByCandidatesList =await _adminService.GetJobAppliedcandidatesAsync(pagination);
 
             List<IEnumerable<dynamic>> data = new List<IEnumerable<dynamic>>();
               data.Add(candidatesList);

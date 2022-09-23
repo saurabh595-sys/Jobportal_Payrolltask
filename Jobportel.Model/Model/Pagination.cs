@@ -6,8 +6,8 @@ namespace JobPortal.Model.Model
 {
     public class Pagination
     {
-            const int maxPageSize = 50;
-            public int PageNumber { get; set; } = 1;
+        const int maxPageSize = 50;
+        public int PageNumber { get; set; } = 1;
 
             private int _pageSize = 10;
             public int PageSize

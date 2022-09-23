@@ -12,7 +12,7 @@ namespace Jobportel.Service.Users
     {
         Task<IEnumerable<UserGetDto>> GetAll(Pagination pagination);
         Task<User> GetById(int id);
-        Task<User> Add(User Users);
+        Task<User> Add(UserAddDto Users);
         Task<User> Update(User Users);
         Task<bool> Delete(int id);
         Task<User> GetUser(string email, string password);

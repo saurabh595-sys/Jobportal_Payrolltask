@@ -33,10 +33,19 @@ namespace JobPortal.Data.Repositories.Jobs
                                   IsActive=j.IsActive
                                  
                               }).OrderBy(x => x.Id)
-                               .Skip((pagination.PageNumber - 1) * pagination.PageSize)
-                               .Take(pagination.PageSize)
-                               .ToListAsync();
-            return Jobs;
+                               
+                                .ToListAsync();
+            var count = Jobs.Count();
+            if (pagination.PageSize == -1)
+            {
+                pagination.PageSize = count;
+            }
+
+            var result = Jobs.Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                           .Take(pagination.PageSize);
+            return result;
+
+            
         }
     }
 }

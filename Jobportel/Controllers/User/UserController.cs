@@ -1,4 +1,5 @@
-﻿using JobPortal.Model.Model;
+﻿using JobPortal.Model.Dto.UserDto;
+using JobPortal.Model.Model;
 using Jobportel.Data.Model;
 using Jobportel.Model;
 using Jobportel.Service.Users;
@@ -37,7 +38,7 @@ namespace Jobportel.Api.Controllers.Users
         }
 
         [HttpPost("User")]
-        public async Task<IActionResult> AddUser(User user)
+        public async Task<IActionResult> AddUser(UserAddDto user)
         {
             await _user.Add(user);
             return OkResponse("Sucess", user);

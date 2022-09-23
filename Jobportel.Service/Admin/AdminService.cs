@@ -1,6 +1,9 @@
 ﻿using JobPortal.Api.Dto;
 using JobPortal.Data.Interfaces.Applicants;
 using JobPortal.Data.Repositories.Jobs;
+using JobPortal.Model.Dto.JobDto;
+using JobPortal.Model.Dto.UserDto;
+using JobPortal.Model.Model;
 using Jobportel.Data;
 using Jobportel.Data.Interfaces;
 using Jobportel.Data.Model;
@@ -29,17 +32,17 @@ namespace JobPortal.Service.Admin
 
 
         }
-        public async Task<IEnumerable<User>> GetcandidatesAsync()
+        public async Task<IEnumerable<UserGetDto>> GetcandidatesAsync(Pagination pagination)
         {
-            return await _userRepository.GetDefaultList(x => x.IsActive == true && x.RoleId == 2);
+            return await _userRepository.Getcandidate(pagination);
         }
-        public async Task<IEnumerable<Job>> GetjobsAsync()
+        public async Task<IEnumerable<GetJobDto>> GetjobsAsync(Pagination pagination)
         {
-            return await _jobRepositry.GetDefaultList(x => x.IsActive == true);
+            return await _jobRepositry.GetJobs(pagination);
         }
-        public async Task<IEnumerable<User>> GetrecruitersAsync()
+        public async Task<IEnumerable<UserGetDto>> GetrecruitersAsync(Pagination pagination)
         {
-            return await _userRepository.GetDefaultList(x => x.IsActive == true && x.RoleId == 3);
+            return await _userRepository.Getrecruiter(pagination);
         }
         public async Task<bool> DeleteCandidateAsync(int id)
         {
@@ -82,7 +85,7 @@ namespace JobPortal.Service.Admin
             }
         }
 
-        public async Task<IEnumerable<JobApplied>> GetJobAppliedcandidatesAsync()
+        public async Task<IEnumerable<JobApplied>> GetJobAppliedcandidatesAsync(Pagination pagination)
         {
             var applicant = await (from u in _context.User
                                   join a in _context.Applicant on u.Id equals a.AppliedBy
@@ -94,10 +97,16 @@ namespace JobPortal.Service.Admin
                                       JobTitle=j.Title,
                                       Description=j.Description,
                                       AppliedAt=a.AppliedAt
-                                  }).ToListAsync();
+                                  }).OrderBy(x => x.CandidateId)
+                               .Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                               .Take(pagination.PageSize)
+                               .ToListAsync();
+
 
             return applicant;
            
         }
+
+   
     }
 }

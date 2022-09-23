@@ -50,8 +50,9 @@ namespace Jobportel
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("Conn")));
-            services.AddControllers(option => option
-                   .Filters.Add(typeof(ExceptionFilter)));
+            //services.AddControllers(option => option
+            //       .Filters.Add(typeof(ExceptionFilter)));
+            services.AddControllers();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

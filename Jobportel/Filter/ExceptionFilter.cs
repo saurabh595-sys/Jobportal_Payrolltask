@@ -45,7 +45,7 @@ namespace JobPortal.Api.Filter
                          ((HttpWebResponse)(context.Exception as WebException).Response).StatusCode
                          : GetErrorCode(context.Exception.GetType());
             string errorMessage = context.Exception.Message;
-            string innerException = context.Exception.InnerException.Message;
+            string innerException = context.Exception.InnerException ==null ? "" :  context.Exception.InnerException.Message;
             string stackTrace = context.Exception.StackTrace;
             
 
@@ -64,7 +64,11 @@ namespace JobPortal.Api.Filter
             using (var con = new SqlConnection(_configuration.GetConnectionString("Conn")))
             {
                 con.Open();
-                string sql = "INSERT INTO JobPortalLog values('" + errorMessage + "', '" + innerException + "', '" + (int)statusCode + "', '" + DateTime.UtcNow.ToString("dd -MM-yyyy") + "')";
+                //string sql = "INSERT INTO JobPortalLog values('" + errorMessage + "', '" + innerException + "', '" + (int)statusCode + "', '" + DateTime.UtcNow.ToString("dd -MM-yyyy") + "')";
+
+string sql = $"INSERT INTO JobPortalLog values(' { errorMessage }', '{ innerException }', '{  (int)statusCode } ', { DateTime.Now.ToString("dd-MM-yyyy")  })";
+
+
                 using (var cmd = new SqlCommand(sql, con))
                 {
                     cmd.ExecuteNonQuery();

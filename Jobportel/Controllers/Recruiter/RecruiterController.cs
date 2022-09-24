@@ -3,11 +3,8 @@ using JobPortal.Service.Jobs;
 using Jobportel.Api.Controllers;
 using Jobportel.Data.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobPortal.Api.Controllers.Recruiter
@@ -21,6 +18,7 @@ namespace JobPortal.Api.Controllers.Recruiter
         {
             _jobService = job;
         }
+
         [Authorize(Policy = "AdminRecruiterOnly")]
         [HttpPost("Job")]
         public async Task<IActionResult> AddJob(JobAddDto job)
@@ -39,9 +37,7 @@ namespace JobPortal.Api.Controllers.Recruiter
         [HttpPost("JobsAppliedByCandidate")]
         public async Task<IActionResult> AppliedJobs()
         {
-
             var AppliedJobs = await _jobService.AppliedJobs(UserId);
-
             return OkResponse("Sucess", AppliedJobs);
         }
 

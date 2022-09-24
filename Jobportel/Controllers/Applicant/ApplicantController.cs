@@ -2,11 +2,7 @@
 using Jobportel.Api.Controllers;
 using Jobportel.Data.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobPortal.Api.Controllers.Applicants
@@ -20,15 +16,15 @@ namespace JobPortal.Api.Controllers.Applicants
         {
             _applicantService = applicant;
         }
-        [Authorize(Policy = "AdminRecruiterOnly")]
         [HttpGet("Applicants")]
+        [Authorize(Policy = "AdminRecruiterOnly")]
         public async Task<IActionResult> GetApplicant()
         {
             var applicants = await _applicantService.GetAll();
             return OkResponse("Success", applicants);
         }
-        [Authorize(Policy = "AdminCandidateOnly")]
         [HttpGet("Appliedjob")]
+        [Authorize(Policy = "AdminCandidateOnly")]
         public async Task<IActionResult> Appliedjob()
         {
             var jobApplieds = await _applicantService.AppliedJobs(UserId);
@@ -43,15 +39,15 @@ namespace JobPortal.Api.Controllers.Applicants
             return OkResponse("Sucess", applicant);
         }
         
-            [Authorize(Policy = "AdminCandidateOnly")]
+        [Authorize(Policy = "AdminCandidateOnly")]
         [HttpPost("ApplyJob")]
         public async Task<IActionResult> ApplyJob(Applicant applicant)
         {
             applicant.AppliedBy = UserId;
-          
             Applicant applicants= await _applicantService.Add(applicant);
             return OkResponse("Sucess", applicants);
         }
+
         [Authorize(Policy = "AdminRecruiterOnly")]
         [HttpPut("Applicant/{id}")]
         public async Task<IActionResult> UpdateApplicant(int id, [FromBody] Applicant applicant)
@@ -59,6 +55,7 @@ namespace JobPortal.Api.Controllers.Applicants
            var applicants= await _applicantService.Update(applicant);
             return OkResponse("Sucess", applicants);
         }
+
         [Authorize(Policy = "AdminRecruiterOnly")]
         [HttpDelete("Applicant/{id}")]
         public async Task<IActionResult> DeleteApplicant(int Id)

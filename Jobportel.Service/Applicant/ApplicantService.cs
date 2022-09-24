@@ -2,12 +2,10 @@
 using JobPortal.Api.Dto;
 using JobPortal.Data.Interfaces.Applicants;
 using JobPortal.Data.Repositories.Jobs;
-using JobPortal.Service.Applicants;
 using Jobportel.Data;
 using Jobportel.Data.Interfaces;
 using Jobportel.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace JobPortal.Service.Applicants
 {
-   public class ApplicantService: IApplicantService
+    public class ApplicantService: IApplicantService
     {
         public readonly IApplicantRepository _applicantRepository;
         public readonly IJobRepositry _jobRepositry;

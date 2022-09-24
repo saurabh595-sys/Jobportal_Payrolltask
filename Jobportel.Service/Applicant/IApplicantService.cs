@@ -1,8 +1,6 @@
 ﻿using JobPortal.Api.Dto;
 using Jobportel.Data.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobPortal.Service.Applicants

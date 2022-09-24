@@ -1,4 +1,4 @@
-﻿using JobPortal.Api.Request;
+﻿using JobPortal.Model.Dto.LoginDto;
 using JobPortal.Service.Roles;
 using Jobportel.Api.Controllers;
 using Jobportel.Model;
@@ -11,7 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +19,13 @@ namespace JobPortal.Api.Controllers.Account
 {
     [Route("api/[controller]")]
     [ApiController]
-    
     public class AccountController : BaseController
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
         private readonly IRoleService _roleService;
       
-        public AccountController(IUserService userService, IConfiguration configuration,IRoleService roleService)
+        public AccountController(IUserService userService, IConfiguration configuration, IRoleService roleService)
         {
             _roleService = roleService;
             _userService = userService;
@@ -36,8 +34,8 @@ namespace JobPortal.Api.Controllers.Account
         }
         [HttpPost]
         [Route("Login")]
-       [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginRequest model)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginDto model)
         {
             var user = await _userService.GetUser(model.Email, model.Password);
             if (user != null)
@@ -80,7 +78,6 @@ namespace JobPortal.Api.Controllers.Account
             var user = await _userService.ForgotPassword(email);
             if (user == true)
             {
-
                 return OkResponse("Otp sent to the register email address..", user);
             }
             return NotFoundResponse("Incorrect Details..", user);
@@ -95,7 +92,6 @@ namespace JobPortal.Api.Controllers.Account
             if (user != null)
             {
                 return OkResponse("Password updated successfully..", user);
-
             }
             return BadResponse("Incorrect Details..", user);
         }

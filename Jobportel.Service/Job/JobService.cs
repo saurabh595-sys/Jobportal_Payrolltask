@@ -2,9 +2,7 @@
 using JobPortal.Data.Repositories.Jobs;
 using Jobportel.Data;
 using Jobportel.Data.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Jobportel.Data.Model
 {
-   public class Job
+    public class Job
     {
         [Key]
         public int Id { get; set; }

@@ -1,11 +1,9 @@
-﻿using JobPortal.Data.Interfaces.Roles;
-using JobPortal.Model.Dto.JobDto;
+﻿using JobPortal.Model.Dto.JobDto;
 using JobPortal.Model.Model;
 using Jobportel.Data;
 using Jobportel.Data.Infrastructure;
 using Jobportel.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,9 +30,7 @@ namespace JobPortal.Data.Repositories.Jobs
                                   CreatedByName = u.Name,
                                   JobEndAt =j.EndAt,
                                   IsActive=j.IsActive
-                                 
                               }).OrderBy(x => x.Id)
-                               
                                 .ToListAsync();
             var count = Jobs.Count();
             if (pagination.PageSize == -1)

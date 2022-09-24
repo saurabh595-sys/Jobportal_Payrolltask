@@ -2,11 +2,7 @@
 using JobPortal.Model.Dto.JobDto;
 using JobPortal.Model.Dto.UserDto;
 using JobPortal.Model.Model;
-using Jobportel.Data.Model;
-
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobPortal.Service.Admin

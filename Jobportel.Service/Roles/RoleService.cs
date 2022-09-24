@@ -1,9 +1,6 @@
 ﻿using Jobportel.Data.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Jobportel.Data.Interfaces;
 using JobPortal.Data.Interfaces.Roles;
 using JobPortal.Model.Model;
 

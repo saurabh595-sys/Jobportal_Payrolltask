@@ -3,13 +3,9 @@ using JobPortal.Model.Dto.UserDto;
 using JobPortal.Model.Model;
 using JobPortal.Service.Admin;
 using Jobportel.Api.Controllers;
-using Jobportel.Data.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobPortal.Api.Controllers.Admin
@@ -83,7 +79,7 @@ namespace JobPortal.Api.Controllers.Admin
             IEnumerable<JobApplied> jobsAppliedByCandidatesList =await _adminService.GetJobAppliedcandidatesAsync(pagination);
 
             List<IEnumerable<dynamic>> data = new List<IEnumerable<dynamic>>();
-              data.Add(candidatesList);
+            data.Add(candidatesList);
             data.Add(recruitersList);
             data.Add(jobsAppliedByCandidatesList);
             return Export(data);

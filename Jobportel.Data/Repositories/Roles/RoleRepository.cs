@@ -2,10 +2,8 @@
 using JobPortal.Model.Model;
 using Jobportel.Data;
 using Jobportel.Data.Infrastructure;
-using Jobportel.Data.Interfaces;
 using Jobportel.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +23,6 @@ namespace JobPortal.Data.Repositories.Roles
                                {
                                   Id=r.Id,
                                   Name=r.Name
-
                                }).OrderBy(x => x.Id)
                                .Skip((pagination.PageNumber - 1) * pagination.PageSize)
                                .Take(pagination.PageSize)

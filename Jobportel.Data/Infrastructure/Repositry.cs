@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,6 @@ namespace Jobportel.Data.Infrastructure
         public async Task<IEnumerable<T>> Get()
         {
             return await _contex.Set<T>().ToListAsync();
-
         }
 
         public async Task<T> GetById(int id)

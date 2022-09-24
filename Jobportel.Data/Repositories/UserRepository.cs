@@ -4,7 +4,6 @@ using Jobportel.Data.Infrastructure;
 using Jobportel.Data.Interfaces;
 using Jobportel.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

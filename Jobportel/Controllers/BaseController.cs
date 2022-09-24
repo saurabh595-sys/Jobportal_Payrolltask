@@ -1,13 +1,11 @@
 ﻿using Jobportel.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.StaticFiles;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Jobportel.Api.Controllers
 {
@@ -33,9 +31,8 @@ namespace Jobportel.Api.Controllers
 
 
 
-        protected FileStreamResult Export(List<IEnumerable<dynamic>> data/* IEnumerable<T> recruitersList,*/ /*IEnumerable<T> JobsAppliedByCandidatesList*/)
+        protected FileStreamResult Export(List<IEnumerable<dynamic>> data)
         {
-
             var stream = new MemoryStream();
             List<dynamic> datalist= new List<dynamic>();
             using (var excle = new ExcelPackage(stream))

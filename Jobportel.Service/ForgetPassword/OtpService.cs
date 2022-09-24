@@ -1,14 +1,11 @@
 ﻿using JobPortal.Data.Interfaces.Forgetpassword;
-using JobPortal.Data.Repositories.ForgetPassword;
 using JobPortal.Model.Model;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobPortal.Service.ForgetPassword
 {
-   public class OtpService:IOtpService
+    public class OtpService:IOtpService
     {
         private readonly IOtpRepositry _otpRepository;
         public OtpService(IOtpRepositry otp)

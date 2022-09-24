@@ -4,10 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace JobPortal.Api.Filter
 {
@@ -64,21 +61,16 @@ namespace JobPortal.Api.Filter
             using (var con = new SqlConnection(_configuration.GetConnectionString("Conn")))
             {
                 con.Open();
-                //string sql = "INSERT INTO JobPortalLog values('" + errorMessage + "', '" + innerException + "', '" + (int)statusCode + "', '" + DateTime.UtcNow.ToString("dd -MM-yyyy") + "')";
-
-string sql = $"INSERT INTO JobPortalLog values(' { errorMessage }', '{ innerException }', '{  (int)statusCode } ', { DateTime.Now.ToString("dd-MM-yyyy")  })";
-
-
+               
+string sql = $"INSERT INTO JobPortalLog values(' { errorMessage }', '{ innerException }', '{(int)statusCode} ', { DateTime.Now.ToString("dd-MM-yyyy")  })";
                 using (var cmd = new SqlCommand(sql, con))
                 {
                     cmd.ExecuteNonQuery();
                 }
-
                 con.Close();
                 response.ContentLength = result.Length;
                 response.WriteAsync(result);
             }
-
         }
         private HttpStatusCode GetErrorCode(Type exceptionType)
         {

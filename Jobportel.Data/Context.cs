@@ -1,13 +1,10 @@
 ﻿using JobPortal.Model.Model;
 using Jobportel.Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Jobportel.Data
 {
-   public class Context: DbContext
+    public class Context: DbContext
     {
         public Context(DbContextOptions options ):base(options)
         {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using JobPortal.Model.Model;
 using Jobportel.Data.Model;
@@ -8,7 +6,7 @@ using Jobportel.Data.Model;
 
 namespace JobPortal.Service.Roles
 {
-   public  interface IRoleService
+    public  interface IRoleService
     {
         Task<IEnumerable<Role>> GetAll(Pagination pagination);
         Task<Role> GetById(int id);

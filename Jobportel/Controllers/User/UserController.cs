@@ -1,14 +1,10 @@
 ﻿using JobPortal.Model.Dto.UserDto;
 using JobPortal.Model.Model;
 using Jobportel.Data.Model;
-using Jobportel.Model;
 using Jobportel.Service.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Jobportel.Api.Controllers.Users

@@ -29,6 +29,7 @@ namespace JobPortal.Api.Controllers.Recruiter
             j.CreatedAt = DateTime.Now;
             j.CreatedBy = UserId;
             j.EndAt = DateTime.Now.AddDays(28);
+            j.IsActive = true;
             await _jobService.Add(j);
             return OkResponse("Sucess", job);
         }

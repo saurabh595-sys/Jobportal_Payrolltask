@@ -60,7 +60,7 @@ namespace JobPortal.Service.Jobs
             return await _jobRepositry.GetById(id);
         }
 
-        public async Task<Job> Update(Job job)
+        public async Task<Job> Update(int id, Job job)
         {
             Job  jobs = await _jobRepositry.GetById(job.Id);
             if (jobs != null)

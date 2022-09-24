@@ -35,10 +35,10 @@ namespace JobPortal.Api.Controllers
         }
 
         [Authorize(Policy = "AdminRecruiterOnly")]
-        [HttpPut("Update/Job")]
+        [HttpPut("Update/Job/{id}")]
         public async Task<IActionResult> UpdateJob(int id, [FromBody] Job job)
         {
-            await _jobService.Update(job);
+            await _jobService.Update(id, job);
             return OkResponse("Sucess", job);
         }
 

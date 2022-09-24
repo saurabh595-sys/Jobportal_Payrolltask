@@ -16,7 +16,7 @@ namespace JobPortal.Service.Jobs
         
         Task<Job> GetById(int id);
         Task<Job> Add(Job job);
-        Task<Job> Update(Job job);
+        Task<Job> Update(int id, Job job);
         Task<bool> Delete(int id);
     }
 }
